@@ -6,7 +6,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/nitsh/go-tcp-fallback-proxy"
+	"github.agodadev.io/IT-Platform/tcp-fallback-proxy"
 )
 
 var (
