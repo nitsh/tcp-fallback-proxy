@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  consul-agent: &consul-agent
+    image: consul:1.4.2
+    volumes:
+      - ./config.hcl:/etc/consul.d/config.hcl
+    command: 'agent -config-file /etc/consul.d/config.hcl -client 0.0.0.0 -datacenter ${datacenter} -retry-join ${consul_server} -advertise ${private_ip} -data-dir /tmp/consul '
+    ports:
+      - "8300:8300"
+      - "8301:8301"
+      - "8302:8302"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+  consul-proxy: 
+    image: consul:1.4.2
+    command: "connect proxy -service ${operator} -upstream ${upstream}:0.0.0.0:${local_bind_port} -log-level debug -http-addr http://consul-agent:8500"
+    ports:
+      - "21000:21000"
+      - "${local_bind_port}:${local_bind_port}"
+    depends_on: 
+      - consul-agent

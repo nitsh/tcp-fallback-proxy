@@ -18,3 +18,26 @@ Usage of tcp-proxy:
   -v: display server actions
   -vv: display server actions and all tcp data
 ```
+
+### Setting up the repo
+
+* Install python3
+* Install [Virtualenv](virtualenv) `pip3 install virtualenv`
+* Create virtual environment using command
+```bash
+virtualenv .venv
+```
+* Activate environment
+```bash
+source ./.venv/bin/activate
+```
+* Install pacakges
+```bash
+pip install -r requirements.txt
+```
+
+After completed set up, if you would like to start again, just:
+
+```bash
+source ./.venv/bin/activate
+```
